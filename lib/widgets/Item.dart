@@ -1,3 +1,5 @@
+// ignore_for_file: file_names
+
 import 'package:auction_app/models/item.model.dart';
 import 'package:flutter/material.dart';
 
@@ -49,16 +51,16 @@ class ItemWidget extends StatelessWidget {
                           width: 180,
                           child: ElevatedButton(
                       onPressed: () {},
-                      child: const Text(
-                        "Voir Plus",
-                        style: TextStyle(color: Colors.white),
-                      ),
                       style: ElevatedButton.styleFrom(
                         primary: Colors.black54,
                         shape: RoundedRectangleBorder(
                           borderRadius: BorderRadius.circular(
                               20.0), // Adjust the radius as needed
                         ),
+                      ),
+                      child: const Text(
+                        "Voir Plus",
+                        style: TextStyle(color: Colors.white),
                       ),
                     ),
                          )

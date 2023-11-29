@@ -4,7 +4,7 @@
 
 import 'package:auction_app/models/user.model.dart';
 import 'package:auction_app/pages/auth/firstPage.dart';
-import 'package:auction_app/pages/home.dart';
+import 'package:auction_app/pages/navigationPage.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
@@ -33,7 +33,7 @@ class AuthController extends GetxController {
       Get.offAll(() => const AuthMain());
     } else {
       getCurrentUserData();
-      Get.offAll(() => const HomePage()); 
+      Get.offAll(() => const NavigationPage()); 
     }
   }
 
@@ -58,11 +58,17 @@ class AuthController extends GetxController {
       if (e.code == 'weak-password') {
         Get.snackbar("Mot de passe invalide", "",
             backgroundColor: Colors.white,
-            colorText: Color.fromARGB(255, 199, 13, 0));
+            colorText: Color.fromARGB(255, 199, 13, 0) ,     icon: Icon(Icons.alarm),
+        shouldIconPulse: true,
+        barBlur: 20,
+        isDismissible: true,);   
       } else if (e.code == 'email-already-in-use') {
         Get.snackbar("email non valide", "",
             backgroundColor: Colors.white,
-            colorText: Color.fromARGB(255, 199, 13, 0));
+            colorText: Color.fromARGB(255, 199, 13, 0) ,     icon: Icon(Icons.alarm),
+        shouldIconPulse: true,
+        barBlur: 20,
+        isDismissible: true,);
       }
     }
   }
@@ -71,16 +77,16 @@ class AuthController extends GetxController {
     try {
       await _auth.signInWithEmailAndPassword(email: email, password: password);
     } on FirebaseAuthException catch (e) {
-      if (e.code == 'user-not-found') {
-        print("user-not-found");
-        Get.snackbar("Utilisateur non trouvé", "verifier votre email",
+     
+        
+        print('not found');
+        Get.snackbar("Verifier vos Coordonnées", e.code,
             backgroundColor: Colors.white,
-            colorText: Color.fromARGB(255, 199, 13, 0));
-      } else if (e.code == 'wrong-password') {
-        Get.snackbar("Mot de passe incorrecte", "",
-            backgroundColor: Colors.white,
-            colorText: Color.fromARGB(255, 199, 13, 0));
-      }
+            colorText: Color.fromARGB(255, 199, 13, 0),     icon: Icon(Icons.error),
+        shouldIconPulse: true,
+        barBlur: 20,
+        isDismissible: true,);
+      
     }
   }
 

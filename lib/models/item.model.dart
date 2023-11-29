@@ -6,6 +6,7 @@ class ItemModel {
   final int max;
   final String publisher;
   final String description;
+  final String docId; 
 
   ItemModel(
       {required this.image,
@@ -14,7 +15,9 @@ class ItemModel {
       required this.min,
       required this.max,
       required this.publisher,
-      required this.description});
+      required this.description ,
+      this.docId=""
+      });
   factory ItemModel.fromJson(Map<String, dynamic> json) {
     return ItemModel(
         image: json['image'],
@@ -23,6 +26,8 @@ class ItemModel {
         min: json['min'],
         max: json['max'],
         publisher: json['publisher'],
-        description: json['description']);
+        description: json['description'] , 
+        docId : json['id'],
+        );
   }
 }
